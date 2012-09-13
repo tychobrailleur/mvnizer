@@ -12,15 +12,19 @@ end
 require 'rake'
 
 require 'jeweler'
+require './lib/mvnizer/version.rb'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "mvnizer"
+  gem.version = Mvnizer::Version::STRING
   gem.homepage = "http://github.com/tychobrailleur/mvnizer"
   gem.license = "MIT"
   gem.summary = %Q{Bootstrap a Maven project without the pain of archetypes.}
   gem.description = %Q{Bootstrap a Maven project without the pain of archetypes.}
   gem.email = "sebastien@weblogism.com"
   gem.authors = ["Sébastien Le Callonnec"]
+
+  gem.executables = ['mvnizer']
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new

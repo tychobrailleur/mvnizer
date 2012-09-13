@@ -1,6 +1,35 @@
 #!/usr/bin/env ruby
 
 $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "lib")))
+require 'mvnizer'
+require 'optparse'
+
+
+help = <<HELP
+Mvnizer bootstraps a Maven project without the pain of archetypes.
+
+  mvnizer <project_name>
+HELP
 
 options = {}
+
+opts = OptionParser.new do |opts|
+  opts.banner = help
+
+  opts.on("--version", "Display current version") do
+    puts "Mvnizer " + Mvnizer::Version::STRING
+    exit 0
+  end
+end
+
+# Read command line options into `options` hash
+opts.parse!
+
+if ARGV.size == 1
+  options[:name] = ARGV[0]
+else
+  puts "Incorrect parameters.  Please `mvnizer --help` for usage."
+  exit(1)
+end
+
 Mvnizer::Mvnize.new.run(options)

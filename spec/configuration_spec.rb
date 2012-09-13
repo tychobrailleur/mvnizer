@@ -18,4 +18,11 @@ describe Mvnizer::Configuration do
     config[:foo].should == "qux"
     config[:baz].should == "buz"
   end
+
+  it "should symbolize configuration keys" do
+    YAML.should_receive(:load_file).with(be_same_path_as(conf_path)).and_return({ "foo" => "bar" })
+
+    config = conf(Hash.new)
+    config[:foo].should == "bar"
+  end
 end
