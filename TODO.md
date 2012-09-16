@@ -11,3 +11,4 @@
 
     mvnizer add org.junit:junit:4.10
 - Provide dependency search facility.
+- Support external config file (e.g. ~/.mvnizerrc) to override current defaults.
