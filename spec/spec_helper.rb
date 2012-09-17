@@ -9,3 +9,9 @@ RSpec::Matchers.define :be_same_path_as do |expected|
     Pathname.new(expected).cleanpath == Pathname.new(actual).cleanpath
   end
 end
+
+RSpec::Matchers.define :be_same_project_as do |expected|
+  match do |actual|
+    expected == actual
+  end
+end

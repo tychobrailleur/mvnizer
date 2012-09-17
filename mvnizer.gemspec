@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "mvnizer"
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["S\u{e9}bastien Le Callonnec"]
-  s.date = "2012-09-13"
+  s.date = "2012-09-17"
   s.description = "Bootstrap a Maven project without the pain of archetypes."
   s.email = "sebastien@weblogism.com"
   s.executables = ["mvnizer"]
@@ -24,10 +24,12 @@ Gem::Specification.new do |s|
     "LICENSE.txt",
     "README.md",
     "Rakefile",
+    "TODO.md",
     "bin/mvnizer",
     "conf/default.yml",
     "lib/mvnizer.rb",
     "lib/mvnizer/configuration.rb",
+    "lib/mvnizer/coordinate_parser.rb",
     "lib/mvnizer/dir_creator.rb",
     "lib/mvnizer/mvnize.rb",
     "lib/mvnizer/pom_generator.rb",
@@ -35,7 +37,11 @@ Gem::Specification.new do |s|
     "lib/mvnizer/templates/pom.xml.erb",
     "lib/mvnizer/version.rb",
     "mvnizer.gemspec",
+    "ragel/coordinate.rb",
+    "ragel/coordinate.rl",
+    "ragel/test_coord.rb",
     "spec/configuration_spec.rb",
+    "spec/coordinate_parser_spec.rb",
     "spec/dir_creator_spec.rb",
     "spec/generator_spec.rb",
     "spec/mvnize_spec.rb",

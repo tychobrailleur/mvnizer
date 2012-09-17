@@ -2,11 +2,12 @@ require 'spec_helper'
 require 'nokogiri'
 
 describe Mvnizer::PomGenerator do
+
+  let (:project) { Mvnizer::Project.new("test", "mvnizer", "1.0.0-SNAPSHOT", "jar")}
   subject { Mvnizer::PomGenerator.new }
 
   it "generates a pom" do
-    options = { group_id: "test", version: "1.0.0-SNAPSHOT", name: "mvnizer" }
-    output = subject.generate(options)
+    output = subject.generate(project)
 
     # TODO: Ain't that a bit overkill for test?
     doc = Nokogiri::XML(output)

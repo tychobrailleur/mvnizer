@@ -40,4 +40,11 @@ describe Mvnizer::CoordinateParser do
     project.artifact_id.should == "name"
     project.type.should == "jar"
   end
+
+  it "can read the artifact id, version and type" do
+    project = subject.parse("name:1.0.0-rc2:war")
+    project.artifact_id.should == "name"
+    project.version.should == "1.0.0-rc2"
+    project.type.should == "war"
+  end
 end
