@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'nokogiri'
 
+# TODO Refactor when dealing with packaging-specific tasks.
 describe Mvnizer::PomGenerator do
 
   let (:project) { Mvnizer::Project.new("test", "mvnizer", "1.0.0-SNAPSHOT", "jar")}

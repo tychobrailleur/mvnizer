@@ -8,7 +8,14 @@ module Mvnizer
 
     # Renders a template named `name` located in the templates
     # folder.
-    def render(name)
+    def render(name, object = nil)
+      binding = get_binding
+
+      if object.respond_to?(:get_binding)
+        puts "*** Dep = #{object}"
+        binding = object.send(:get_binding)
+      end
+
       content = File.read(File.join(TEMPLATE_PATH, name))
       ERB.new(content).result(binding)
     end

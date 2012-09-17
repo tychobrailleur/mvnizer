@@ -29,10 +29,17 @@ module Mvnizer
     private 
     def create_project(coordinates, options)
       project = @coordinate_parser.parse(coordinates)
-      Project.new(project.group_id || options[:group_id],
+      return_project = Project.new(project.group_id || options[:group_id],
                   project.artifact_id,
                   project.version || options[:version],
-                  project.type || options[:type]) 
+                  project.type || options[:type])
+
+      dependencies = options[:dependencies]
+      dependencies.each do |d|
+        return_project.add_dependency(@coordinate_parser.parse(d))
+      end if dependencies
+ 
+      return_project
     end
   end
 end

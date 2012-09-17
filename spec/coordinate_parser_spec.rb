@@ -47,4 +47,14 @@ describe Mvnizer::CoordinateParser do
     project.version.should == "1.0.0-rc2"
     project.type.should == "war"
   end
+
+  it "can parse the scope" do
+    project = subject.parse("name:1.0.0-rc2:war:runtime")
+    project.artifact_id.should == "name"
+    project.scope.should == "runtime"
+
+    project = subject.parse("com.weblogism:name:1.0.0-rc2:runtime")
+    project.artifact_id.should == "name"
+    project.scope.should == "runtime"
+  end
 end

@@ -1,6 +1,6 @@
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.8.2</version>
-      <scope>test</scope>
+      <groupId><%= group_id %></groupId>
+      <artifactId><%= artifact_id %></artifactId>
+      <version><%= version %></version>
+      <% if scope && scope != "compile" %><scope><%= scope %></scope><% end %>
     </dependency>
