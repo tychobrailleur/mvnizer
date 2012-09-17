@@ -2,6 +2,7 @@ module Mvnizer
   # Class representing a project coordinates.
   # The elements of the coordinates are read-only.
   class Project
+    include Erbicole
     attr_reader :group_id, :artifact_id, :version, :type
 
     def initialize(group_id, artifact_id, version, type)
@@ -20,9 +21,5 @@ module Mvnizer
        && type == project.type)
     end
 
-    # Return the ERB binding.
-    def get_binding
-      binding
-    end
   end
 end

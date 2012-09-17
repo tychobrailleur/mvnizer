@@ -7,18 +7,14 @@
   <artifactId><%= artifact_id %></artifactId>
   <version><%= version %></version>
   <name><%= artifact_id %></name>
+  <% if type != 'jar' %><packaging><%= type %></packaging><% end %>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.8.2</version>
-      <scope>test</scope>
-    </dependency>
+<%= render('_dependency.xml.erb') %>
   </dependencies>
 
   <build>
