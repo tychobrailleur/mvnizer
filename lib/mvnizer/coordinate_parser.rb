@@ -20,9 +20,6 @@ module Mvnizer
     # the scope (test, compile, provided, runtime, system or import)
     def parse_scoped_coordinates(coordinates)
       p  = nil
-
-      r = /\A(([a-zA-Z][\w\.\-]+):)?([a-zA-Z][\w\.\-]+)(:(\d+\.\d+(\.\d)?(\-\w+)?))?:(war|jar|pom):(test|compile|provided|runtime|system|import)/
-
       if coordinates =~ /\A(([a-zA-Z][\w\.\-]+):)?([a-zA-Z][\w\.\-]+)(:(\d+\.\d+(\.\d)?(\-\w+)?))?:(war|jar|pom):(test|compile|provided|runtime|system|import)/
         p = Project.new($2, $3, $5, $8, [], $9)
       end
