@@ -49,12 +49,21 @@ describe Mvnizer::CoordinateParser do
   end
 
   it "can parse the scope" do
-    project = subject.parse("name:1.0.0-rc2:war:runtime")
+    project = subject.parse_scoped_coordinates("name:1.0.0-rc2:war:runtime")
     project.artifact_id.should == "name"
     project.scope.should == "runtime"
 
-    project = subject.parse("com.weblogism:name:1.0.0-rc2:runtime")
+    project = subject.parse_scoped_coordinates("com.weblogism:name:1.0.0-rc2:jar:runtime")
     project.artifact_id.should == "name"
     project.scope.should == "runtime"
+  end
+
+  it "can parse the junit dependency" do
+    project = subject.parse_scoped_coordinates("junit:junit:4.10:jar:test")
+    project.group_id.should == "junit"
+    project.artifact_id.should == "junit"
+    project.version.should == "4.10"
+    project.type.should == "jar"
+    project.scope.should == "test"
   end
 end

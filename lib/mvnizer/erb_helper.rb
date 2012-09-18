@@ -12,8 +12,7 @@ module Mvnizer
       binding = get_binding
 
       if object.respond_to?(:get_binding)
-        puts "*** Dep = #{object}"
-        binding = object.send(:get_binding)
+        binding = object.get_binding
       end
 
       content = File.read(File.join(TEMPLATE_PATH, name))

@@ -30,6 +30,8 @@ describe Mvnizer::PomGenerator do
   end
 
   it "adds the dependencies" do
+    dependency = Mvnizer::Project.new("junit", "junit", "4.8.2", "jar", [], "test")
+    project.add_dependency(dependency)
     output = subject.generate(project)
 
     doc = Nokogiri::XML(output)
