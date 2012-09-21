@@ -8,7 +8,7 @@ Mvnizer is ideal to create a throw-away Maven project that adds junit as a depen
 
 Mvnizer is used as follows:
 
-    $ mvnizer <coordinates>
+    $ mvnizer new <coordinates>
 
 The coordinates can have the following format:
 
