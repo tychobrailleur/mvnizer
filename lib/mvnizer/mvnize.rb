@@ -1,45 +1,36 @@
 module Mvnizer
   # Mvnize is the main entry point into Mvnizer.
   class Mvnize
-    include Configuration
+    attr_writer :out
 
-    def initialize(generator = Mvnizer::PomGenerator.new,
-                   dir_creator = Mvnizer::DirCreator.new,
-                   coordinate_parser = Mvnizer::CoordinateParser.new)
-      @generator = generator
-      @dir_creator = dir_creator
-      @coordinate_parser = coordinate_parser
+    def out
+      @out ||= $stdout
     end
 
-    # Creates the Maven project structure, and creates the pom file
-    # from the options
+    def self.new_project
+      @new_project ||= Mvnizer::Command::NewProject.new
+    end
+
+    # Execute the right command depending on the :command parameter
+    # passed in +options+.
+    # If the command does not exit, throw an error.
     def run(options)
-      original_coordinates = options[:name]
-      options = conf(options)
-      project = create_project(original_coordinates, options)
+      raise ArgumentError, "Please give a name to the project." unless options[:name]
+      if options[:command] == "new"
+        # FIXME: coordinates should be parsed here to check type.
+        # and pass to the factory, rather than doing this if, 
+        # and parse coordinates later down in NewProject.
+        if options[:name] =~ /:war$/
+          project = Mvnizer::Command::ProjectFactory.create("war") 
+        else
+          project = Mvnizer::Command::ProjectFactory.create("jar")
+        end
 
-      @dir_creator.create("#{project.artifact_id}/src/main/java",
-                          "#{project.artifact_id}/src/test/java")
-
-      File.open("#{project.artifact_id}/pom.xml", "w") do |f|
-        f.write(@generator.generate(project))
+        project.run(options)
+        out.puts("Project created successfully.")
+      else
+        raise ArgumentError, "#{options[:command]} is not a valid command."
       end
-    end
-
-    private
-    def create_project(coordinates, options)
-      project = @coordinate_parser.parse(coordinates)
-      return_project = Project.new(project.group_id || options[:group_id],
-                                   project.artifact_id,
-                                   project.version || options[:version],
-                                   project.type || options[:type])
-
-      dependencies = options[:dependencies]
-      dependencies.each do |d|
-        return_project.add_dependency(@coordinate_parser.parse_scoped_coordinates(d))
-      end if dependencies
-
-      return_project
     end
   end
 end

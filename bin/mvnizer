@@ -8,13 +8,18 @@ require 'optparse'
 help = <<HELP
 Mvnizer bootstraps a Maven project without the pain of archetypes.
 
-  mvnizer <project_name>
+  mvnizer new <project_name>
 HELP
 
 options = {}
 
 opts = OptionParser.new do |opts|
   opts.banner = help
+
+  opts.on_tail("-h", "--help", "Show this message") do
+    puts opts
+    exit
+  end
 
   opts.on("--version", "Display current version") do
     puts "Mvnizer " + Mvnizer::Version::STRING
@@ -25,8 +30,9 @@ end
 # Read command line options into `options` hash
 opts.parse!
 
-if ARGV.size == 1
-  options[:name] = ARGV[0]
+if ARGV.size == 2
+  options[:command] = ARGV[0]
+  options[:name] = ARGV[1]
 else
   puts "Incorrect parameters.  Please `mvnizer --help` for usage."
   exit(1)
