@@ -6,15 +6,13 @@ module Mvnizer
     describe NewWarProject do
 
       let(:project) { Mvnizer::Project.new(nil, "foobar", nil, nil) }
-      let(:coordinate_parser) { double("coordinate_parser") } 
-
-      subject { Mvnizer::Command::NewWarProject.new(coordinate_parser) }
+      subject { Mvnizer::Command::NewWarProject.new }
 
       before do
         $run = false
         class NewProject
           alias old_run run
-          def run(options)
+          def run(project)
             $run = true
           end
         end
@@ -23,27 +21,23 @@ module Mvnizer
       end
 
       it "creates a basic project" do
-        options = {}
         subject.should_receive(:create_dir)
         subject.should_receive(:generate_file)
-        subject.run(options)
+        subject.run(project)
         $run.should be_true
       end
 
       it "creates the webapp directory" do
-        options = {name: "foobar"}
         subject.should_receive(:create_dir).with("foobar/src/main/webapp/WEB-INF")
         subject.should_receive(:generate_file)
-        subject.run(options)
+        subject.run(project)
       end
 
       it "generates the web.xml file" do
-        options = {name: "foobar"}
         subject.should_receive(:create_dir)
-        subject.should_receive(:generate_file).with(File.join(TaskHelper::TEMPLATE_DIR, "web.xml.erb"),
-                                                    "foobar/src/main/webapp/WEB-INF/web.xml", project)
+        subject.should_receive(:generate_file).with(File.join(TaskHelper::TEMPLATE_DIR, "web.xml.erb"), "foobar/src/main/webapp/WEB-INF/web.xml", project)
 
-        subject.run(options)
+        subject.run(project)
       end
 
       after do

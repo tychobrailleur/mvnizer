@@ -1,7 +1,12 @@
 module Mvnizer
   # Mvnize is the main entry point into Mvnizer.
   class Mvnize
+    include Configuration
     attr_writer :out
+
+    def initialize(coordinate_parser = Mvnizer::CoordinateParser.new)
+      @coordinate_parser = coordinate_parser
+    end
 
     def out
       @out ||= $stdout
@@ -12,21 +17,42 @@ module Mvnizer
     # If the command does not exit, throw an error.
     def run(options)
       raise ArgumentError, "Please give a name to the project." unless options[:name]
-      if options[:command] == "new"
-        # FIXME: coordinates should be parsed here to check type.
-        # and pass to the factory, rather than doing this if, 
-        # and parse coordinates later down in NewProject.
-        if options[:name] =~ /:war$/
-          project = Mvnizer::Command::ProjectFactory.create("war") 
-        else
-          project = Mvnizer::Command::ProjectFactory.create("jar")
-        end
+      project_details = define_project(options)
 
-        project.run(options)
-        out.puts("Project created successfully.")
+      if options[:command] == "new"
+        project_command = Mvnizer::Command::ProjectFactory.create(project_details.type)
+
+        project_command.run(project_details)
+        out.puts("Project #{project_details.artifact_id} created successfully.")
       else
         raise ArgumentError, "#{options[:command]} is not a valid command."
       end
+    end
+
+    private
+    # Creates an instance of +Project+ class populated with the coordinates
+    # set with the user’s definition, or default values if not set.
+    def define_project(options)
+      # Get coordinates provided by the user on the CLI.
+      coordinates = options[:name]
+      # Retrieve default options
+      options = conf(options)
+      
+      # Parse user coordinates, and found values override options
+      project = @coordinate_parser.parse(coordinates)
+      return_project = Project.new(project.group_id || options[:group_id],
+                                   project.artifact_id,
+                                   project.version || options[:version],
+                                   project.type || options[:type])
+      
+
+      # Get default dependencies, and add them after having parsed their coords.
+      dependencies = options[:dependencies]
+      dependencies.each do |d|
+        return_project.add_dependency(@coordinate_parser.parse_scoped_coordinates(d))
+      end if dependencies
+      
+      return_project
     end
   end
 end

@@ -3,13 +3,48 @@ require 'spec_helper'
 module Mvnizer
   describe Mvnize do
 
+    let (:project) { Project.new(nil, "quxbaz", nil, nil) }
     let (:new_project) { double("new_project") }
-    subject { Mvnizer::Mvnize.new }
+    let(:coordinate_parser) { double("coordinate_parser") } 
+    subject { Mvnizer::Mvnize.new(coordinate_parser) }
+
+    before { subject.out = StringIO.new }
+
+    it "reads the configuration" do
+      options = {name: "foobar", command: "new"}
+      subject.should_receive(:conf).with(options).and_return(options)
+
+      p = Mvnizer::Project.new("group", "foobar", "version", "jar")
+      coordinate_parser.should_receive(:parse).and_return(project)
+      Command::ProjectFactory.should_receive(:create).and_return(new_project)
+      new_project.should_receive(:run)
+      
+      subject.run(options)
+    end
+
+    it "creates a project from the provided coordinates" do
+      options = {name: "foobar", command: "new"}
+
+      subject.should_receive(:conf).with(options).and_return(options)
+      
+      p = Mvnizer::Project.new("group", "foobar", "version", "jar")
+      coordinate_parser.should_receive(:parse).with("foobar").and_return(p)
+      Command::ProjectFactory.should_receive(:create).and_return(new_project)
+      new_project.should_receive(:run)
+      
+      subject.run(options)
+    end
 
     it "chooses what command to run depending on the options" do
       options = {name: "quxbaz", command: "new"}
-      Command::ProjectFactory.should_receive(:create).and_return(new_project)
-      new_project.should_receive(:run).with(options)
+
+      subject.should_receive(:conf).and_return(Hash.new)
+
+      p = Mvnizer::Project.new("group", "foobar", "version", "pom")
+      coordinate_parser.should_receive(:parse).and_return(p)
+      Command::ProjectFactory.should_receive(:create).with("pom").and_return(new_project)
+      new_project.should_receive(:run)
+
       subject.run(options)
     end
 
@@ -18,6 +53,8 @@ module Mvnizer
     end
 
     it "displays a success message when done" do
+      subject.should_receive(:conf).and_return(Hash.new)
+      coordinate_parser.should_receive(:parse).and_return(project)
       Command::ProjectFactory.should_receive(:create).and_return(new_project)
       new_project.should_receive(:run)
 # For some obscure reason, this does not work:
@@ -35,15 +72,12 @@ module Mvnizer
       subject.run(name: "quxbaz", command: "new")
       string_io.string.should match(/success/i)
     end
-
-    it "performs war tasks if name ends with :war" do
-      options = {name: "quxbaz:war", command: "new"}
-      Command::ProjectFactory.should_receive(:create).with("war").and_return(new_project)
-      new_project.should_receive(:run).with(options)
-      subject.run(options)
-    end
-    
+   
     it "throws an error if the command to run is not valid" do
+      subject.should_receive(:conf).and_return(Hash.new)
+      coordinate_parser.should_receive(:parse).and_return(project)
+
+
       lambda { subject.run(name: "quxbaz", command: "foobar") }.should raise_error(ArgumentError, "foobar is not a valid command.")
     end
 
