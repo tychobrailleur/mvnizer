@@ -2,12 +2,9 @@ module Mvnizer
   module Command
     class NewProject
       include Mvnizer::Configuration
+      include Mvnizer::TaskHelper
 
-      def initialize(generator = Mvnizer::PomGenerator.new,
-                     dir_creator = Mvnizer::DirCreator.new,
-                     coordinate_parser = Mvnizer::CoordinateParser.new)
-        @generator = generator
-        @dir_creator = dir_creator
+      def initialize(coordinate_parser = Mvnizer::CoordinateParser.new)
         @coordinate_parser = coordinate_parser
       end
 
@@ -16,12 +13,12 @@ module Mvnizer
       def run(options)
         @project = define_project(options)
 
-        @dir_creator.create("#{@project.artifact_id}/src/main/java",
-                            "#{@project.artifact_id}/src/test/java")
+        create_dir("#{@project.artifact_id}/src/main/java",
+                   "#{@project.artifact_id}/src/test/java")
 
-        File.open("#{@project.artifact_id}/pom.xml", "w") do |f|
-          f.write(@generator.generate(@project))
-        end
+        generate_file(File.join(TEMPLATE_DIR, "pom.xml.erb"), 
+                      "#{@project.artifact_id}/pom.xml",
+                      @project)
       end
       
       private

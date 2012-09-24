@@ -7,10 +7,6 @@ module Mvnizer
       @out ||= $stdout
     end
 
-    def self.new_project
-      @new_project ||= Mvnizer::Command::NewProject.new
-    end
-
     # Execute the right command depending on the :command parameter
     # passed in +options+.
     # If the command does not exit, throw an error.

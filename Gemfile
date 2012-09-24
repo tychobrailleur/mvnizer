@@ -6,4 +6,5 @@ group :development do
   gem 'fakefs', '~> 0.4.0'
   gem 'nokogiri', '~> 1.5.5'
   gem 'jeweler', '~> 1.8.4'
+  gem 'aruba', '~> 0.4.11'
 end
