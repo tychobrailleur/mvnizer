@@ -9,5 +9,6 @@ Feature: Search for a Maven artefact
     Then the output should contain "log4j:log4j:"
     And the output should contain "ant:ant-apache-log4j"
 
-  Scenario: error message when no result
-    
+  Scenario:  message when no result
+    When I run `mvnizer search ffffl`
+    Then the output should contain "No result found"    

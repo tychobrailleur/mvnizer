@@ -18,8 +18,17 @@ module Mvnizer
 
         response = self.class.get(url)
         if response
-          hits = response["response"]["docs"].each do |a|
-            out.puts "  #{a['g']}:#{a['a']}:#{a['latestVersion']}:#{a['p']}"
+          if response.code != 200
+            out.puts "Error during search: #{response.code}"
+            exit(1)
+          end
+
+          if response["response"]["numFound"].to_i > 0
+            hits = response["response"]["docs"].each do |a|
+              out.puts "  #{a['g']}:#{a['a']}:#{a['latestVersion']}:#{a['p']}"
+            end
+          else
+            out.puts "  No result found."
           end
         end
 
