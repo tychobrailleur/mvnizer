@@ -4,7 +4,9 @@ Bootstraps a Maven project.  Because archetypes shouldn't be so complicated.
 
 Mvnizer is ideal to create a throw-away Maven project that adds junit as a dependency and sets up the Maven project structure.
 
-# Command
+# Commands
+
+## Project Creation
 
 Mvnizer is used as follows:
 
@@ -24,6 +26,13 @@ Here are some examples of valid commands:
     mvnizer new com.example:foo
     mvnizer new com.example:foo:war
     mvnizer new com.example:foo:1.0:war
+
+## Dependency Search
+
+You can search for dependencies in the Maven central repository with the command:
+
+    $ mvnizer search <text>
+    
 
 
 # License

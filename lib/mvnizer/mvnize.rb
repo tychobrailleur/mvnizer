@@ -17,13 +17,17 @@ module Mvnizer
     # If the command does not exit, throw an error.
     def run(options)
       raise ArgumentError, "Please give a name to the project." unless options[:name]
-      project_details = define_project(options)
 
-      if options[:command] == "new"
+      case options[:command]
+      when "new"
+        project_details = define_project(options)
         project_command = Mvnizer::Command::ProjectFactory.create(project_details.type)
 
         project_command.run(project_details)
         out.puts("Project #{project_details.artifact_id} created successfully.")
+      when "search"
+        search_command = Command::SearchArtefact.new
+        search_command.run(options)
       else
         raise ArgumentError, "#{options[:command]} is not a valid command."
       end

@@ -9,6 +9,16 @@ help = <<HELP
 Mvnizer bootstraps a Maven project without the pain of archetypes.
 
   mvnizer new <project_name>
+    Creates a new project.  Example of valid project names:
+      mvnizer new foo
+      mvnizer new foo:war
+      mvnizer new foo:1.0:war
+      mvnizer new com.example:foo
+      mvnizer new com.example:foo:war
+      mvnizer new com.example:foo:1.0:war
+
+  mvnizer search <text>
+    Searches for artefacts in the Maven central repository.
 HELP
 
 options = {}

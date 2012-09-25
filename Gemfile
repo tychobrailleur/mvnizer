@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+gem 'httparty', '~> 0.9.0'
+
 group :development do
   gem 'rspec', '~> 2.11.0'
   gem 'rspec-mocks', '~> 2.11.2'

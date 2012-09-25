@@ -5,6 +5,8 @@ module Mvnizer
 
     let (:project) { Project.new(nil, "quxbaz", nil, nil) }
     let (:new_project) { double("new_project") }
+    let (:search) { double("search") }
+
     let(:coordinate_parser) { double("coordinate_parser") } 
     subject { Mvnizer::Mvnize.new(coordinate_parser) }
 
@@ -53,8 +55,7 @@ module Mvnizer
     end
 
     it "displays a success message when done" do
-      subject.should_receive(:conf).and_return(Hash.new)
-      coordinate_parser.should_receive(:parse).and_return(project)
+      subject.should_receive(:define_project).and_return(project)
       Command::ProjectFactory.should_receive(:create).and_return(new_project)
       new_project.should_receive(:run)
 # For some obscure reason, this does not work:
@@ -74,11 +75,16 @@ module Mvnizer
     end
    
     it "throws an error if the command to run is not valid" do
-      subject.should_receive(:conf).and_return(Hash.new)
-      coordinate_parser.should_receive(:parse).and_return(project)
-
-
       lambda { subject.run(name: "quxbaz", command: "foobar") }.should raise_error(ArgumentError, "foobar is not a valid command.")
+    end
+
+    it "calls the search command when doing a search" do
+      options = { command:"search", name: "junit" }
+
+      Command::SearchArtefact.should_receive(:new).and_return(search)
+      search.should_receive(:run).with(options)
+
+      subject.run(options)
     end
 
   end

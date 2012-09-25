@@ -1,7 +1,7 @@
 Feature: Create a new Maven project
 
   In order to rapidly run a project
-  As a user using Mvnizer
+  As a user of Mvnizer
   I want to quickly create Maven projects
 
   Scenario: create a jar project
