@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["S\u{e9}bastien Le Callonnec"]
-  s.date = "2012-09-21"
+  s.date = "2012-09-25"
   s.description = "Bootstrap a Maven project without the pain of archetypes."
   s.email = "sebastien@weblogism.com"
   s.executables = ["mvnizer"]
@@ -27,18 +27,22 @@ Gem::Specification.new do |s|
     "TODO.md",
     "bin/mvnizer",
     "conf/default.yml",
+    "features/new_project.feature",
+    "features/search_artefact.feature",
+    "features/step_definitions/pom_steps.rb",
+    "features/support/env.rb",
     "lib/mvnizer.rb",
     "lib/mvnizer/commands.rb",
     "lib/mvnizer/commands/new_project.rb",
     "lib/mvnizer/commands/new_war_project.rb",
     "lib/mvnizer/commands/project_factory.rb",
+    "lib/mvnizer/commands/search_artefact.rb",
     "lib/mvnizer/configuration.rb",
     "lib/mvnizer/coordinate_parser.rb",
-    "lib/mvnizer/dir_creator.rb",
     "lib/mvnizer/erb_helper.rb",
     "lib/mvnizer/mvnize.rb",
-    "lib/mvnizer/pom_generator.rb",
     "lib/mvnizer/project.rb",
+    "lib/mvnizer/task_helper.rb",
     "lib/mvnizer/templates/_dependency.xml.erb",
     "lib/mvnizer/templates/pom.xml.erb",
     "lib/mvnizer/templates/web.xml.erb",
@@ -50,12 +54,12 @@ Gem::Specification.new do |s|
     "spec/commands/new_project_spec.rb",
     "spec/commands/new_war_project_spec.rb",
     "spec/commands/project_factory_spec.rb",
+    "spec/commands/search_artefact_spec.rb",
     "spec/configuration_spec.rb",
     "spec/coordinate_parser_spec.rb",
-    "spec/dir_creator_spec.rb",
-    "spec/generator_spec.rb",
     "spec/mvnize_spec.rb",
-    "spec/spec_helper.rb"
+    "spec/spec_helper.rb",
+    "spec/task_helper_spec.rb"
   ]
   s.homepage = "http://github.com/tychobrailleur/mvnizer"
   s.licenses = ["MIT"]
@@ -67,24 +71,30 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<httparty>, ["~> 0.9.0"])
       s.add_development_dependency(%q<rspec>, ["~> 2.11.0"])
       s.add_development_dependency(%q<rspec-mocks>, ["~> 2.11.2"])
       s.add_development_dependency(%q<fakefs>, ["~> 0.4.0"])
       s.add_development_dependency(%q<nokogiri>, ["~> 1.5.5"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.4"])
+      s.add_development_dependency(%q<aruba>, ["~> 0.4.11"])
     else
+      s.add_dependency(%q<httparty>, ["~> 0.9.0"])
       s.add_dependency(%q<rspec>, ["~> 2.11.0"])
       s.add_dependency(%q<rspec-mocks>, ["~> 2.11.2"])
       s.add_dependency(%q<fakefs>, ["~> 0.4.0"])
       s.add_dependency(%q<nokogiri>, ["~> 1.5.5"])
       s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
+      s.add_dependency(%q<aruba>, ["~> 0.4.11"])
     end
   else
+    s.add_dependency(%q<httparty>, ["~> 0.9.0"])
     s.add_dependency(%q<rspec>, ["~> 2.11.0"])
     s.add_dependency(%q<rspec-mocks>, ["~> 2.11.2"])
     s.add_dependency(%q<fakefs>, ["~> 0.4.0"])
     s.add_dependency(%q<nokogiri>, ["~> 1.5.5"])
     s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
+    s.add_dependency(%q<aruba>, ["~> 0.4.11"])
   end
 end
 
