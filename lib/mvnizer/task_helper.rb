@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'nokogiri'
 
 module Mvnizer
   # The +TaskHelper+ provides different functions that can be used in tasks,
@@ -28,5 +29,40 @@ module Mvnizer
         f.write(ERB.new(template).result(binding.get_binding))
       end
     end
+
+    # adds a list of dependencies to the pom file whose location
+    # can be given as +pom_location+.  By default, this function 
+    # looks up the pom in the current directory.
+    def add_dependency(dependency, pom_location = "pom.xml")
+      raise FileNotFoundError, "The pom.xml file cannot be found." unless File.exists?(pom_location)
+
+      coordinate_parser = CoordinateParser.new
+
+      pom = Nokogiri::XML(File.open(pom_location)) do |conf|
+        conf.default_xml.noblanks
+      end
+      dependencies_node = pom.xpath("/pom:project/pom:dependencies", {"pom" => "http://maven.apache.org/POM/4.0.0"}).first
+
+      dependency.each do |d|
+        # First parse the dependency coordinates
+        dep_project = coordinate_parser.parse_scoped_coordinates(d)
+        puts dep_project
+
+        Nokogiri::XML::Builder.with(dependencies_node) do |xml|
+          xml.dependency {
+            xml.groupId dep_project.group_id
+            xml.artifactId dep_project.artifact_id
+            xml.version dep_project.version
+            xml.scope dep_project.scope if dep_project.scope != nil && dep_project.scope != "compile"
+            xml.type dep_project.type if dep_project.type != "jar"
+          }
+        end
+      end
+
+      puts pom.to_xml(indent: 2)
+    end
   end
+
+  # Error thrown when the pom file cannot be found.
+  class FileNotFoundError < StandardError; end
 end

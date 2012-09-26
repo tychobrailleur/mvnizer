@@ -1,5 +1,6 @@
 # encoding: utf-8
 require 'spec_helper'
+require 'mvnizer/commands/new_war_project'
 
 module Mvnizer
   module Command
