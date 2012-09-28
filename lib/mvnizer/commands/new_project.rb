@@ -19,6 +19,7 @@ module Mvnizer
                       project)
       end
 
+      # Returns the list of dependencies to be added for this type of project.
       # Override this method if extra dependencies are needed.
       def get_dependencies
         []

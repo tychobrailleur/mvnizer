@@ -43,6 +43,10 @@ module Mvnizer
         subject.run(project)
       end
 
+      it "ensures packages for generated classes are valid" do
+        pending
+      end
+
       it "adds the dependencies needed for a war file" do
         deps = subject.get_dependencies
         deps.include?("javax:javaee-web-api:6.0:jar:provided").should be_true
