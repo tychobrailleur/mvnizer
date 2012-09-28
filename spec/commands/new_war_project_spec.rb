@@ -5,7 +5,7 @@ module Mvnizer
   module Command
     describe NewWarProject do
 
-      let(:project) { Mvnizer::Project.new(nil, "foobar", nil, nil) }
+      let(:project) { Mvnizer::Project.new("test", "foobar", nil, nil) }
       subject { Mvnizer::Command::NewWarProject.new }
 
       before do
@@ -22,20 +22,23 @@ module Mvnizer
 
       it "creates a basic project" do
         subject.should_receive(:create_dir)
-        subject.should_receive(:generate_file)
+        subject.should_receive(:generate_file).exactly(3).times
         subject.run(project)
         $run.should be_true
       end
 
       it "creates the webapp directory" do
         subject.should_receive(:create_dir).with("foobar/src/main/webapp/WEB-INF")
-        subject.should_receive(:generate_file)
+        subject.should_receive(:generate_file).exactly(3).times
         subject.run(project)
       end
 
-      it "generates the web.xml file" do
+      it "generates all the webapp files file" do
         subject.should_receive(:create_dir)
         subject.should_receive(:generate_file).with(File.join(TaskHelper::TEMPLATE_DIR, "web.xml.erb"), "foobar/src/main/webapp/WEB-INF/web.xml", project)
+        subject.should_receive(:generate_file).with(File.join(TaskHelper::TEMPLATE_DIR, "war", "ExampleServlet.java.erb"), "foobar/src/main/java/test/foobar/ExampleServlet.java", project)
+        subject.should_receive(:generate_file).with(File.join(TaskHelper::TEMPLATE_DIR, "war", "index.jsp.erb"), "foobar/src/main/webapp/WEB-INF/index.jsp", project)
+
 
         subject.run(project)
       end
