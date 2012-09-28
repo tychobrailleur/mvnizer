@@ -12,10 +12,22 @@ module Mvnizer
                       "#{project.artifact_id}/src/main/webapp/WEB-INF/web.xml",
                       project)
 
+        target_directory = "#{project.group_id}.#{project.artifact_id}".gsub(/\./, File::SEPARATOR)
+
+        generate_file(File.join(TEMPLATE_DIR, "war", "ExampleServlet.java.erb"), 
+                      "#{project.artifact_id}/src/main/java/#{target_directory}/ExampleServlet.java",
+                      project)        
+        generate_file(File.join(TEMPLATE_DIR, "war", "index.jsp.erb"), 
+                      "#{project.artifact_id}/src/main/webapp/WEB-INF/index.jsp",
+                      project)        
+
 
         # TODO:
         # Create sample @WebServlet?
-        # Add JEE dependencies into pom.
+      end
+
+      def get_dependencies
+        ["javax:javaee-web-api:6.0:jar:provided"]
       end
     end
   end

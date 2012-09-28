@@ -38,15 +38,14 @@ module Mvnizer
 
       coordinate_parser = CoordinateParser.new
 
-      pom = Nokogiri::XML(File.open(pom_location)) do |conf|
-        conf.default_xml.noblanks
+      pom = Nokogiri::XML(File.open(pom_location)) do |c|
+        c.noblanks
       end
       dependencies_node = pom.xpath("/pom:project/pom:dependencies", {"pom" => "http://maven.apache.org/POM/4.0.0"}).first
 
       dependency.each do |d|
         # First parse the dependency coordinates
         dep_project = coordinate_parser.parse_scoped_coordinates(d)
-        puts dep_project
 
         Nokogiri::XML::Builder.with(dependencies_node) do |xml|
           xml.dependency {
@@ -59,7 +58,9 @@ module Mvnizer
         end
       end
 
-      puts pom.to_xml(indent: 2)
+      # Requires sparklemotion/nokogiri#772 to produce 
+      # identical pom files in both MRI and JRuby.
+      pom.to_xml(indent: 2)
     end
   end
 

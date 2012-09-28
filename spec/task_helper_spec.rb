@@ -12,13 +12,6 @@ module Mvnizer
     let (:file) { double("file") }
     subject { Dummy.new }
 
-    # Make use of fakefs explicit by using activate! / deactivate!
-    # before do
-    #   FakeFS.activate!
-    #   FileUtils.mkdir("foobar")
-    #   FileUtils.touch("dummy.txt.erb")
-    # end
-
     describe "#create_dir" do
       it "creates a list of directories" do
         subject.create_dir("/tmp/blah/blah", "/tmp/foo/bar")
@@ -60,17 +53,14 @@ module Mvnizer
         dependencies = ["org.apache.commons:commons-lang3:3.1:jar",
                         "org.apache.commons:commons-collections:3.2.1:jar"]
 
-        subject.add_dependency(dependencies, "/tmp/foonbar/pom.xml")
+        pom_location = File.join(File.dirname(__FILE__), "dummy_pom.xml")
+        output = subject.add_dependency(dependencies, pom_location)
+        output.should match("<groupId>org.apache.commons</groupId>")
       end
 
       it "throws an error if the pom cannot be found in the current directory" do
         lambda { subject.add_dependency(nil) }.should raise_error(FileNotFoundError, "The pom.xml file cannot be found.")
       end
     end
-
-    # after do
-    #   FileUtils.rm_rf("foobar")
-    #   FakeFS.deactivate! 
-    # end
   end
 end

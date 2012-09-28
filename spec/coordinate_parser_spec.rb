@@ -70,6 +70,16 @@ describe Mvnizer::CoordinateParser do
       project.scope.should == "test"
     end
 
+    it "can parse the java EE dependency" do
+      project = subject.parse_scoped_coordinates("javax:javaee-web-api:6.0:jar:provided")
+      project.group_id.should == "javax"
+      project.artifact_id.should == "javaee-web-api"
+      project.version.should == "6.0"
+      project.type.should == "jar"
+      project.scope.should == "provided"
+
+    end
+
     it "can parse a dependency without scope" do
       project = subject.parse_scoped_coordinates("junit:junit:4.10:jar")
       project.group_id.should == "junit"

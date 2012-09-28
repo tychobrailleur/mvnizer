@@ -40,6 +40,11 @@ module Mvnizer
         subject.run(project)
       end
 
+      it "adds the dependencies needed for a war file" do
+        deps = subject.get_dependencies
+        deps.include?("javax:javaee-web-api:6.0:jar:provided").should be_true
+      end
+
       after do
         class NewProject
           alias run old_run
