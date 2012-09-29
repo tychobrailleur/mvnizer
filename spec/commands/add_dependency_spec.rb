@@ -14,7 +14,7 @@ module Mvnizer
         options = { name: "test" }
 
         File.should_receive(:exists?).and_return(true)
-        subject.should_receive(:add_dependency).with("test").and_return("out")
+        subject.should_receive(:add_dependency).with(["test"]).and_return("out")
         File.should_receive(:open).with("pom.xml", "w").and_yield(file)
         file.should_receive(:write).with("out")
 

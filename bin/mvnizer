@@ -17,6 +17,9 @@ Mvnizer bootstraps a Maven project without the pain of archetypes.
       mvnizer new com.example:foo:war
       mvnizer new com.example:foo:1.0:war
 
+  mvnizer add <coordinates>
+    Adds a dependency to the project.
+
   mvnizer search <text>
     Searches for artefacts in the Maven central repository.
 HELP

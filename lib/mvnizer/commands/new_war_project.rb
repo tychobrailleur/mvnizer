@@ -15,8 +15,7 @@ module Mvnizer
 
         # The Java class will be generated in the groupId/artifactId folder
         # with the dots replaced by path separators.
-        # FIXME: packages containing dashes will break
-        target_directory = "#{project.group_id}.#{project.artifact_id}".gsub(/\./, File::SEPARATOR)
+        target_directory = project.package_name.gsub(/\./, File::SEPARATOR)
 
         generate_file(File.join(TEMPLATE_DIR, "war", "ExampleServlet.java.erb"),
                       "#{project.artifact_id}/src/main/java/#{target_directory}/ExampleServlet.java",

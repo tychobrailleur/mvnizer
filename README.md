@@ -27,6 +27,18 @@ Here are some examples of valid commands:
     mvnizer new com.example:foo:war
     mvnizer new com.example:foo:1.0:war
 
+## Add Dependency
+
+To add dependencies, you must be in the folder where the pom file you want to add the dependency to is.
+
+To add a dependency, simply pass the coordinates of the dependency, and add scope if needed (if no scope is given, `compile` is assumed):
+
+    mvnizer add org.apache.commons:commons-lang3:3.1:jar
+    mvnizer add org.mockito:mockito-core:1.9.5-rc1:jar:test
+
+The `search` features makes it easy to find the coordinates of the dependencies for you.
+
+
 ## Dependency Search
 
 You can search for dependencies in the Maven central repository with the command:

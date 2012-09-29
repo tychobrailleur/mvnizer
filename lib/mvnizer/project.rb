@@ -27,6 +27,12 @@ module Mvnizer
        && type == project.type)
     end
 
+    def package_name
+      package = artifact_id
+      package = "#{group_id}.#{package}" unless group_id == nil
+      package.gsub(/\-/, "")
+    end
+
     # Converts project into its coordinates representation.
     def to_s
       "#{group_id}:#{artifact_id}:#{version}:#{type}:#{scope}"
