@@ -3,6 +3,7 @@ $:.unshift File.dirname(__FILE__)
 require 'erb'
 
 require 'mvnizer/version'
+require 'mvnizer/exceptions'
 require 'mvnizer/erb_helper'
 require 'mvnizer/task_helper'
 require 'mvnizer/project'

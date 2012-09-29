@@ -28,6 +28,9 @@ module Mvnizer
       when "search"
         search_command = Command::SearchArtefact.new
         search_command.run(options)
+      when "add"
+        add_command = Command::AddDependency.new
+        add_command.run(options)
       else
         raise ArgumentError, "#{options[:command]} is not a valid command."
       end

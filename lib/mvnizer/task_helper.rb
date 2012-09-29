@@ -33,7 +33,7 @@ module Mvnizer
     # adds a list of dependencies to the pom file whose location
     # can be given as +pom_location+.  By default, this function 
     # looks up the pom in the current directory.
-    def add_dependency(dependency, pom_location = "pom.xml")
+    def add_dependency(dependency, pom_location = File.join(Dir.pwd, "pom.xml"))
       raise FileNotFoundError, "The pom.xml file cannot be found." unless File.exists?(pom_location)
 
       coordinate_parser = CoordinateParser.new
@@ -64,6 +64,4 @@ module Mvnizer
     end
   end
 
-  # Error thrown when the pom file cannot be found.
-  class FileNotFoundError < StandardError; end
 end

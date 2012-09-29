@@ -6,11 +6,7 @@ module Mvnizer
     describe SearchArtefact do
 
       subject { SearchArtefact.new }
-      before do
-        subject.out = StringIO.new 
-
-      end
-
+      before { subject.out = StringIO.new }
 
       def httparty_response_mock(mock_response_content)
         request_object = HTTParty::Request.new Net::HTTP::Get, '/'

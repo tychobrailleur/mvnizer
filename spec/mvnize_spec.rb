@@ -87,5 +87,14 @@ module Mvnizer
       subject.run(options)
     end
 
+    it "calls the add command when adding a dependency" do
+      options = { command:"add", name: "junit" }
+
+      Command::AddDependency.should_receive(:new).and_return(search)
+      search.should_receive(:run).with(options)
+
+      subject.run(options)
+    end
+
   end
 end
