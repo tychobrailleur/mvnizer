@@ -4,9 +4,9 @@ module Mvnizer
     class ProjectFactory
       def self.create(type)
         case type
-        when "jar"
+        when 'jar'
           return NewProject.new
-        when "war"
+        when 'war'
           require 'mvnizer/commands/new_war_project'
           return NewWarProject.new
         else
@@ -16,4 +16,3 @@ module Mvnizer
     end
   end
 end
-

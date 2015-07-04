@@ -19,7 +19,7 @@ module Mvnizer
         Dir.exists?("/tmp/foo/bar").should be_true
       end
     end
-    
+
     describe "#generate_file" do
       it "generates a file from a template into a given directory" do
 
@@ -39,7 +39,7 @@ module Mvnizer
 
         subject.generate_file("dummy.txt.erb", "foobar/dummy.txt", binding)
       end
-      
+
       it "creates the output directory if it does not exist" do
         subject.should_receive(:create_dir).with("foo")
         File.should_receive(:open).any_number_of_times.and_return(file)
@@ -49,11 +49,7 @@ module Mvnizer
     end
 
     describe "#add_dependency" do
-
-      # This test fails because of sparklemotion/nokogiri#771
-      # Remove pending when nokogiri is fixed.
       it "adds a new dependency to an existing pom file" do
-        pending("Awaiting sparklemotion/nokogiri#771")
         dependencies = ["org.apache.commons:commons-lang3:3.1:jar",
                         "org.apache.commons:commons-collections:3.2.1:jar"]
 

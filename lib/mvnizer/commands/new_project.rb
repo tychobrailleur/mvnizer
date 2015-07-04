@@ -14,7 +14,7 @@ module Mvnizer
         coordinate_parser = CoordinateParser.new
         get_dependencies.each { |d| project.add_dependency(coordinate_parser.parse_scoped_coordinates(d)) }
 
-        generate_file(File.join(TEMPLATE_DIR, "pom.xml.erb"), 
+        generate_file(File.join(TEMPLATE_DIR, 'pom.xml.erb'),
                       "#{project.artifact_id}/pom.xml",
                       project)
       end
@@ -24,7 +24,7 @@ module Mvnizer
       def get_dependencies
         []
       end
-      
+
     end
   end
 end

@@ -1,4 +1,4 @@
 group_id: com.example
 version: 0.0.1-SNAPSHOT
 type: jar
-dependencies: [ "junit:junit:4.10:jar:test" ]
+dependencies: [ "junit:junit:4.12:jar:test" ]
