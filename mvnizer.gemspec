@@ -86,7 +86,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rspec>, ["~> 2.11.0"])
       s.add_development_dependency(%q<rspec-mocks>, ["~> 2.11.2"])
       s.add_development_dependency(%q<fakefs>, ["~> 0.4.0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.8.4"])
+      s.add_development_dependency(%q<jeweler>, ["~> 2.0.1"])
       s.add_development_dependency(%q<aruba>, ["~> 0.4.11"])
     else
       s.add_dependency(%q<httparty>, ["~> 0.9.0"])
@@ -94,7 +94,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rspec>, ["~> 2.11.0"])
       s.add_dependency(%q<rspec-mocks>, ["~> 2.11.2"])
       s.add_dependency(%q<fakefs>, ["~> 0.4.0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
+      s.add_dependency(%q<jeweler>, ["~> 2.0.1"])
       s.add_dependency(%q<aruba>, ["~> 0.4.11"])
     end
   else
@@ -103,7 +103,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rspec>, ["~> 2.11.0"])
     s.add_dependency(%q<rspec-mocks>, ["~> 2.11.2"])
     s.add_dependency(%q<fakefs>, ["~> 0.4.0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
+    s.add_dependency(%q<jeweler>, ["~> 2.0.1"])
     s.add_dependency(%q<aruba>, ["~> 0.4.11"])
   end
 end
