@@ -57,4 +57,4 @@ You can search for dependencies in the Maven central repository with the command
 
 MIT License.
 
-© Copyright 2013,2015 – Sébastien Le Callonnec
+© Copyright 2012,2015 – Sébastien Le Callonnec
