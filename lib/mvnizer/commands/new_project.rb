@@ -14,9 +14,14 @@ module Mvnizer
         coordinate_parser = CoordinateParser.new
         get_dependencies.each { |d| project.add_dependency(coordinate_parser.parse_scoped_coordinates(d)) }
 
-        generate_file(File.join(TEMPLATE_DIR, 'pom.xml.erb'),
+        generate_file(File.join(TEMPLATE_DIR, "pom.xml.erb"),
                       "#{project.artifact_id}/pom.xml",
                       project)
+        generate_file(File.join(TEMPLATE_DIR, "gitignore.erb"),
+                      "#{project.artifact_id}/.gitignore",
+                      project)
+
+
       end
 
       # Returns the list of dependencies to be added for this type of project.
