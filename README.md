@@ -4,6 +4,12 @@ Bootstraps a Maven project.  Because archetypes shouldn't be so complicated.
 
 Mvnizer is ideal to create a throw-away Maven project that adds junit as a dependency and sets up the Maven project structure.
 
+# Install
+
+Mvnizer can be installed as follows:
+
+    $ gem install mvnizer
+
 # Commands
 
 ## Project Creation
@@ -44,9 +50,9 @@ The `search` features makes it easy to find the coordinates of the dependencies 
 You can search for dependencies in the Maven central repository with the command:
 
     $ mvnizer search <text>
-    
+
 
 
 # License
 
-MIT License. 
+MIT License.
