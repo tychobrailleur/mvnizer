@@ -1,13 +1,16 @@
 source 'http://rubygems.org'
 
-gem 'httparty', '>= 0.13.5'
-gem 'nokogiri', '>= 1.6.6'
+gem 'httparty', '~> 0.16.2'
+gem 'nokogiri', '~> 1.8.2'
 
+# Ensure Rake remains under v. 11 to avoid issues with
+# removed `last_comment` in rspec.
+gem 'rake', '< 11.0'
 
 group :development do
-  gem 'rspec', '~> 2.11.0'
-  gem 'rspec-mocks', '~> 2.11.2'
-  gem 'fakefs', '~> 0.4.0'
-  gem 'jeweler', '~> 2.0.1'
-  gem 'aruba', '~> 0.4.11'
+  gem 'rspec', '~> 2.99.0'
+  gem 'rspec-mocks', '~> 2.99.4'
+  gem 'fakefs', '~> 0.14.2'
+  gem 'jeweler', '~> 2.3.9'
+  gem 'aruba', '~> 0.14.5'
 end
