@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
   s.executables = ["mvnizer".freeze]
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.md",
     "README.org"
   ]
   s.files = [
@@ -27,7 +26,7 @@ Gem::Specification.new do |s|
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
-    "README.md",
+    "README.org",
     "Rakefile",
     "TODO.md",
     "bin/mvnizer",
@@ -84,8 +83,8 @@ Gem::Specification.new do |s|
     s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<httparty>.freeze, [">= 0.16.2"])
-      s.add_runtime_dependency(%q<nokogiri>.freeze, [">= 1.8.2"])
+      s.add_runtime_dependency(%q<httparty>.freeze, ["~> 0.16.2"])
+      s.add_runtime_dependency(%q<nokogiri>.freeze, ["~> 1.8.2"])
       s.add_runtime_dependency(%q<rake>.freeze, ["< 11.0"])
       s.add_development_dependency(%q<rspec>.freeze, ["~> 2.99.0"])
       s.add_development_dependency(%q<rspec-mocks>.freeze, ["~> 2.99.4"])
@@ -93,8 +92,8 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>.freeze, ["~> 2.3.9"])
       s.add_development_dependency(%q<aruba>.freeze, ["~> 0.14.5"])
     else
-      s.add_dependency(%q<httparty>.freeze, [">= 0.16.2"])
-      s.add_dependency(%q<nokogiri>.freeze, [">= 1.8.2"])
+      s.add_dependency(%q<httparty>.freeze, ["~> 0.16.2"])
+      s.add_dependency(%q<nokogiri>.freeze, ["~> 1.8.2"])
       s.add_dependency(%q<rake>.freeze, ["< 11.0"])
       s.add_dependency(%q<rspec>.freeze, ["~> 2.99.0"])
       s.add_dependency(%q<rspec-mocks>.freeze, ["~> 2.99.4"])
@@ -103,8 +102,8 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<aruba>.freeze, ["~> 0.14.5"])
     end
   else
-    s.add_dependency(%q<httparty>.freeze, [">= 0.16.2"])
-    s.add_dependency(%q<nokogiri>.freeze, [">= 1.8.2"])
+    s.add_dependency(%q<httparty>.freeze, ["~> 0.16.2"])
+    s.add_dependency(%q<nokogiri>.freeze, ["~> 1.8.2"])
     s.add_dependency(%q<rake>.freeze, ["< 11.0"])
     s.add_dependency(%q<rspec>.freeze, ["~> 2.99.0"])
     s.add_dependency(%q<rspec-mocks>.freeze, ["~> 2.99.4"])
