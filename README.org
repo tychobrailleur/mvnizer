@@ -1,7 +1,7 @@
 Bootstraps a Maven project. Because archetypes shouldn't be so
 complicated.
 
-[[https://travis-ci.org/tychobrailleur/mvnizer][[[https://travis-ci.org/tychobrailleur/mvnizer.svg?branch=master]]]]
+[[https://travis-ci.org/tychobrailleur/mvnizer][https://travis-ci.org/tychobrailleur/mvnizer.svg?branch=master]]
 [[https://badge.fury.io/rb/mvnizer][https://badge.fury.io/rb/mvnizer.svg]]
 
 
