@@ -1,0 +1,39 @@
+* Mvnizer 0.4.0
+
+- Update maven compiler plugin to 3.8.0
+- Create =.editorconfig= when generating project
+
+* Mvnizer 0.3.0
+
+- Update maven compiler plugin to 3.7.0, and java sources to 1.8
+- Update gem dependencies
+- Set up Travis CI
+
+* Mvnizer 0.2.0
+
+- Create =.gitignore= when generating project
+- Upgrade httparty
+
+* Mvnizer 0.1.0
+
+- Update nokogiri to version 1.6.6
+- Update maven compiler plugin to 3.3, and java sources to 1.7
+- Use junit 4.12 by default
+
+* Mvnizer 0.0.4
+
+- Added sample servlet and JSP in new war project,
+- Add dependency using the =mvnizer add= command.
+
+* Mvnizer 0.0.3
+
+- Search dependencies in Maven central repo
+
+* Mvnizer 0.0.2
+
+- Coordinate parsing
+- Project creation depending on the project type (jar or war)
+
+* Mvnizer 0.0.1
+
+- Basic Maven project creation
