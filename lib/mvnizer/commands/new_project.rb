@@ -20,7 +20,9 @@ module Mvnizer
         generate_file(File.join(TEMPLATE_DIR, "gitignore.erb"),
                       "#{project.artifact_id}/.gitignore",
                       project)
-
+        generate_file(File.join(TEMPLATE_DIR, "editorconfig.erb"),
+                      "#{project.artifact_id}/.editorconfig",
+                      project)
 
       end
 
