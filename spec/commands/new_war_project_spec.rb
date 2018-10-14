@@ -24,7 +24,7 @@ module Mvnizer
         subject.should_receive(:create_dir)
         subject.should_receive(:generate_file).exactly(3).times
         subject.run(project)
-        $run.should be_true
+        $run.should be true
       end
 
       it "creates the webapp directory" do
@@ -45,7 +45,7 @@ module Mvnizer
 
       it "adds the dependencies needed for a war file" do
         deps = subject.get_dependencies
-        deps.include?("javax:javaee-web-api:6.0:jar:provided").should be_true
+        deps.include?("javax:javaee-web-api:6.0:jar:provided").should be true
       end
 
       after do

@@ -15,8 +15,8 @@ module Mvnizer
     describe "#create_dir" do
       it "creates a list of directories" do
         subject.create_dir("/tmp/blah/blah", "/tmp/foo/bar")
-        Dir.exists?("/tmp/blah/blah").should be_true
-        Dir.exists?("/tmp/foo/bar").should be_true
+        Dir.exists?("/tmp/blah/blah").should be true
+        Dir.exists?("/tmp/foo/bar").should be true
       end
     end
 
@@ -42,7 +42,7 @@ module Mvnizer
 
       it "creates the output directory if it does not exist" do
         subject.should_receive(:create_dir).with("foo")
-        File.should_receive(:open).any_number_of_times.and_return(file)
+        File.should_receive(:open).at_least(1).times.and_return(file)
         file.should_receive(:read)
         subject.generate_file("dummy.txt.erb", "foo/dummy.txt", binding)
       end
