@@ -1,18 +1,18 @@
 package <%= package_name %>;
 
 import java.io.IOException;
-import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 
 @WebServlet("/hello")
-public class ExampleServlet extends GenericServlet {
+public class ExampleServlet extends HttpServlet {
 
     @Override
     public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
-        
+
         request.setAttribute("greeting", "Hello World");
         request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
     }

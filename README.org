@@ -5,12 +5,12 @@ complicated.
 
 * Introduction
 
-Mvnizer is ideal to create a throw-away Maven project that adds junit as
-a dependency and sets up the Maven project structure.
+  Mvnizer is ideal to create a throwaway Maven project that adds
+  junit as a dependency and sets up the Maven project structure.
 
 * Install
 
-Mvnizer can be installed as follows:
+  Mvnizer can be installed as follows:
 
 #+BEGIN_EXAMPLE
     $ gem install mvnizer
@@ -20,22 +20,22 @@ Mvnizer can be installed as follows:
 
 ** Project Creation
 
-Mvnizer is used as follows:
+   Mvnizer is used as follows:
 
 #+BEGIN_EXAMPLE
     $ mvnizer new <coordinates>
 #+END_EXAMPLE
 
-The coordinates can have the following format:
+   The coordinates can have the following format:
 
 #+BEGIN_EXAMPLE
     <group:>artifact<:version><:type>
 #+END_EXAMPLE
 
-with the values between angled brackets optional. =type= can only have
-one of the following three values: =jar= (default), =war= or =pom=. This
-command creates a project in the =artifact= folder, populating the
-proper values in the pom file.
+   with the values between angled brackets optional. =type= can only
+have one of the following three values: =jar= (default), =war= or
+=pom=. This command creates a project in the =artifact= folder,
+populating the proper values in the pom file.
 
 Here are some examples of valid commands:
 
@@ -48,13 +48,27 @@ Here are some examples of valid commands:
     mvnizer new com.example:foo:1.0:war
 #+END_EXAMPLE
 
+*** WAR Project
+
+    If the type of project generated is =war=, a servlet
+    (=ExampleServlet=) is generated, along with a JSP file and an
+    empty =web.xml= file.
+
+    When running the Jetty plugin, /e.g./:
+
+#+BEGIN_EXAMPLE
+mvn org.eclipse.jetty:jetty-maven-plugin:9.4.12.v20180830:run-war
+#+END_EXAMPLE
+
+    the example can then be accessed at http://localhost:8080/hello
+
 ** Add Dependency
 
-To add dependencies, you must be in the folder where the pom file you
-want to add the dependency to is.
+   To add dependencies, you must be in the folder where the pom file you
+   want to add the dependency to is.
 
-To add a dependency, simply pass the coordinates of the dependency, and
-add scope if needed (if no scope is given, =compile= is assumed):
+   To add a dependency, simply pass the coordinates of the dependency, and
+   add scope if needed (if no scope is given, =compile= is assumed):
 
 #+BEGIN_EXAMPLE
     mvnizer add org.apache.commons:commons-lang3:3.1:jar
