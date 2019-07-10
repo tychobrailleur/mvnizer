@@ -1,3 +1,4 @@
+# coding: utf-8
 module Mvnizer
   # Mvnize is the main entry point into Mvnizer.
   class Mvnize
@@ -44,21 +45,27 @@ module Mvnizer
       coordinates = options[:name]
       # Retrieve default options
       options = conf(options)
-      
+
       # Parse user coordinates, and found values override options
       project = @coordinate_parser.parse(coordinates)
       return_project = Project.new(project.group_id || options[:group_id],
                                    project.artifact_id,
                                    project.version || options[:version],
                                    project.type || options[:type])
-      
+
 
       # Get default dependencies, and add them after having parsed their coords.
       dependencies = options[:dependencies]
       dependencies.each do |d|
         return_project.add_dependency(@coordinate_parser.parse_scoped_coordinates(d))
       end if dependencies
-      
+
+
+      plugins = options[:plugins]
+      plugins.each do |p|
+        return_project.add_plugin(@coordinate_parser.parse_scoped_coordinates(p))
+      end if plugins
+
       return_project
     end
   end

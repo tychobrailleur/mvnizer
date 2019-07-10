@@ -3,22 +3,27 @@ module Mvnizer
   # The elements of the coordinates are read-only.
   class Project
     include Erbicole
-    attr_reader :group_id, :artifact_id, :version, :type, :dependencies, :scope
+    attr_reader :group_id, :artifact_id, :version, :type, :dependencies, :scope, :plugins
 
-    def initialize(group_id, artifact_id, version, type, dependencies = [], scope = nil)
+    def initialize(group_id, artifact_id, version, type, dependencies = [], scope = nil, plugins = [])
       @group_id = group_id
       @artifact_id = artifact_id
       @version = version
       @type = type
       @dependencies = dependencies
       @scope = scope
+      @plugins = plugins
     end
 
     def add_dependency(dependency)
       @dependencies << dependency
     end
 
-    # Check whether the project coordinates of this project 
+    def add_plugin(plugin)
+      @plugins << plugin
+    end
+
+    # Check whether the project coordinates of this project
     # match the ones of the other project.
     def ==(project)
       (group_id == project.group_id \

@@ -26,7 +26,7 @@
           <source>1.8</source>
           <target>1.8</target>
         </configuration>
-      </plugin>
-    </plugins>
+      </plugin><% plugins.each do |p| if p %><%= render('_plugin.xml.erb', p) %><% end;
+                                                                                end %>    </plugins>
   </build>
 </project>

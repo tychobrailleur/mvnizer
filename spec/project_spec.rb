@@ -18,6 +18,12 @@ module Mvnizer
         project = Project.new("f-oo", "b-ar", nil, nil)
         project.package_name.should == "foo.bar"
       end
+
+      it "can have plugins" do
+        project = Project.new("foo", "bar", nil, nil)
+        project.add_plugin(Plugin.new("qux", "baz", nil, nil))
+        project.plugins.size.should == 1
+      end
     end
   end
 end
