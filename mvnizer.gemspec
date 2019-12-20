@@ -80,31 +80,22 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "http://github.com/tychobrailleur/mvnizer".freeze
   s.licenses = ["MIT".freeze]
-  s.rubygems_version = "2.7.8".freeze
+  s.rubygems_version = "3.1.2".freeze
   s.summary = "Bootstrap a Maven project without the pain of archetypes.".freeze
 
   if s.respond_to? :specification_version then
     s.specification_version = 4
+  end
 
-    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<httparty>.freeze, ["~> 0.16"])
-      s.add_runtime_dependency(%q<nokogiri>.freeze, ["~> 1.10"])
-      s.add_runtime_dependency(%q<rake>.freeze, ["< 11.0"])
-      s.add_development_dependency(%q<rspec>.freeze, ["~> 2.99"])
-      s.add_development_dependency(%q<rspec-mocks>.freeze, ["~> 2.99"])
-      s.add_development_dependency(%q<fakefs>.freeze, ["~> 0.14"])
-      s.add_development_dependency(%q<jeweler>.freeze, ["~> 2.3"])
-      s.add_development_dependency(%q<aruba>.freeze, ["~> 0.14"])
-    else
-      s.add_dependency(%q<httparty>.freeze, ["~> 0.16"])
-      s.add_dependency(%q<nokogiri>.freeze, ["~> 1.10"])
-      s.add_dependency(%q<rake>.freeze, ["< 11.0"])
-      s.add_dependency(%q<rspec>.freeze, ["~> 2.99"])
-      s.add_dependency(%q<rspec-mocks>.freeze, ["~> 2.99"])
-      s.add_dependency(%q<fakefs>.freeze, ["~> 0.14"])
-      s.add_dependency(%q<jeweler>.freeze, ["~> 2.3"])
-      s.add_dependency(%q<aruba>.freeze, ["~> 0.14"])
-    end
+  if s.respond_to? :add_runtime_dependency then
+    s.add_runtime_dependency(%q<httparty>.freeze, ["~> 0.16"])
+    s.add_runtime_dependency(%q<nokogiri>.freeze, ["~> 1.10"])
+    s.add_runtime_dependency(%q<rake>.freeze, ["< 11.0"])
+    s.add_development_dependency(%q<rspec>.freeze, ["~> 2.99"])
+    s.add_development_dependency(%q<rspec-mocks>.freeze, ["~> 2.99"])
+    s.add_development_dependency(%q<fakefs>.freeze, ["~> 0.14"])
+    s.add_development_dependency(%q<jeweler>.freeze, ["~> 2.3"])
+    s.add_development_dependency(%q<aruba>.freeze, ["~> 0.14"])
   else
     s.add_dependency(%q<httparty>.freeze, ["~> 0.16"])
     s.add_dependency(%q<nokogiri>.freeze, ["~> 1.10"])
