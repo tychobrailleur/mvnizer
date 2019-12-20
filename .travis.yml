@@ -1,5 +1,7 @@
 language: ruby
+before_install:
+  - gem install bundler -v "$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)"
 rvm:
- - "2.3.8"
- - "2.4.9"
- - "2.6.5"
+  - "2.3.8"
+  - "2.4.9"
+  - "2.6.5"
