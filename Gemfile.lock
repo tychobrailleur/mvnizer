@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     addressable (2.4.0)
     aruba (0.14.6)
@@ -112,5 +112,8 @@ DEPENDENCIES
   rspec (~> 2.99.0)
   rspec-mocks (~> 2.99.4)
 
+RUBY VERSION
+   ruby 2.6.3p62
+
 BUNDLED WITH
-   1.16.3
+   1.17.3
