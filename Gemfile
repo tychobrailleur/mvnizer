@@ -15,5 +15,4 @@ group :development do
   gem 'fakefs', '~> 0.14'
   gem 'jeweler', '~> 2.3'
   gem 'aruba', '~> 0.14'
-  gem 'git', '~> 1.4'
 end
