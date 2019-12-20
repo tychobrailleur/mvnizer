@@ -96,6 +96,7 @@ Gem::Specification.new do |s|
     s.add_development_dependency(%q<fakefs>.freeze, ["~> 0.14"])
     s.add_development_dependency(%q<jeweler>.freeze, ["~> 2.3"])
     s.add_development_dependency(%q<aruba>.freeze, ["~> 0.14"])
+    s.add_development_dependency(%q<git>.freeze, ["~> 1.4"])
   else
     s.add_dependency(%q<httparty>.freeze, ["~> 0.16"])
     s.add_dependency(%q<nokogiri>.freeze, ["~> 1.10"])
@@ -105,6 +106,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<fakefs>.freeze, ["~> 0.14"])
     s.add_dependency(%q<jeweler>.freeze, ["~> 2.3"])
     s.add_dependency(%q<aruba>.freeze, ["~> 0.14"])
+    s.add_dependency(%q<git>.freeze, ["~> 1.4"])
   end
 end
 
