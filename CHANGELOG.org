@@ -1,3 +1,16 @@
+* Mvnizer 0.8.0
+
+  - Update dependencies version.
+
+* Mvnizer 0.7.0
+
+  - Update dependencies version.
+
+* Mvnizer 0.6.0
+
+  - Maven plugins support,
+  - Update dependencies version.
+
 * Mvnizer 0.5.0
 
 - Fix generated Servlet to work with recent Jetty.

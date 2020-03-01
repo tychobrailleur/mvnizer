@@ -11,6 +11,7 @@ RUN apt-get update -q && \
     apt-get clean
 
 RUN /bin/bash -l -c "rvm autolibs packages && rvm install 2.3.8"
+RUN gem update --system
 RUN gem install bundler
 
 # To run:
