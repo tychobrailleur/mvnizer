@@ -1,3 +1,7 @@
+* Mvnizer 0.9.0
+
+  - Update rack dependency version.
+
 * Mvnizer 0.8.0
 
   - Update dependencies version.
