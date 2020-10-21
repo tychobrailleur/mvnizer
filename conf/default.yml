@@ -1,5 +1,5 @@
 group_id: com.example
 version: 0.0.1-SNAPSHOT
 type: jar
-dependencies: [ "junit:junit:4.12:jar:test" ]
-plugins: [ ":maven-compiler-plugin:3.8.0" ]
+dependencies: [ "org.junit.jupiter:junit-jupiter-engine:5.7.0:jar:test" ]
+plugins: [ ":maven-compiler-plugin:3.8.1" ]

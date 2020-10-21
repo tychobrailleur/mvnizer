@@ -1,5 +1,4 @@
-# encoding: utf-8
-
+# coding: utf-8
 require 'rubygems'
 require 'bundler'
 begin
@@ -51,5 +50,3 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
-
-# -*- coding: utf-8 -*-
