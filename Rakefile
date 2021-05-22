@@ -1,6 +1,8 @@
 # coding: utf-8
 require 'rubygems'
 require 'bundler'
+require 'rake/release'
+
 begin
   Bundler.setup(:default, :development)
 rescue Bundler::BundlerError => e
@@ -27,7 +29,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "helloworld #{version}"
+  rdoc.title = "mvnizer #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

@@ -5,6 +5,7 @@ ruby ">= 2.7.0"
 gem 'httparty', '~> 0.17'
 gem 'nokogiri', '~> 1.11'
 gem 'rake', '~> 13.0'
+gem 'rake-release'
 
 group :development do
   gem 'rspec', '~> 3.10.0'
