@@ -1,4 +1,4 @@
-module Mvnizer 
+module Mvnizer
   class CoordinateParser
     # Parse the coordinates of an artifact.
     def parse(coordinates)
