@@ -5,24 +5,24 @@ describe Mvnizer::Configuration do
   let (:conf_path) { File.join(File.dirname(__FILE__), '..', 'conf', 'default.yml') }
 
   it "loads configuration from default.yml" do
-      YAML.should_receive(:load_file).with(be_same_path_as(conf_path)).and_return({ foo: "bar" })
-    
+      expect(YAML).to receive(:load_file).with(be_same_path_as(conf_path)).and_return({ foo: "bar" })
+
     config = conf(Hash.new)
-    config[:foo].should == "bar"
+    expect(config[:foo]).to eq("bar")
   end
 
   it "should replace default values" do
-      YAML.should_receive(:load_file).with(be_same_path_as(conf_path)).and_return({ foo: "bar" })
-    
+      expect(YAML).to receive(:load_file).with(be_same_path_as(conf_path)).and_return({ foo: "bar" })
+
     config = conf({ foo: "qux", baz: "buz" })
-    config[:foo].should == "qux"
-    config[:baz].should == "buz"
+    expect(config[:foo]).to eq("qux")
+    expect(config[:baz]).to eq("buz")
   end
 
   it "should symbolize configuration keys" do
-    YAML.should_receive(:load_file).with(be_same_path_as(conf_path)).and_return({ "foo" => "bar" })
+    expect(YAML).to receive(:load_file).with(be_same_path_as(conf_path)).and_return({ "foo" => "bar" })
 
     config = conf(Hash.new)
-    config[:foo].should == "bar"
+    expect(config[:foo]).to eq("bar")
   end
 end

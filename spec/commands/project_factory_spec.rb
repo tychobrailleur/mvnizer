@@ -6,16 +6,16 @@ module Mvnizer
   module Command
     describe ProjectFactory do
       it "returns an instance of NewProject when passing jar" do
-        ProjectFactory.create("jar").should be_a(NewProject)
-        ProjectFactory.create("jar").should_not be_a(NewWarProject)
+        expect(ProjectFactory.create("jar")).to be_a(NewProject)
+        expect(ProjectFactory.create("jar")).not_to be_a(NewWarProject)
       end
 
       it "returns an instance of NewWarProject when passing war" do
-        ProjectFactory.create("war").should be_a(NewWarProject)
+        expect(ProjectFactory.create("war")).to be_a(NewWarProject)
       end
 
       it "throws an error when unknown type is passed" do
-        lambda { ProjectFactory.create("foo") }.should raise_error(ArgumentError, "Don’t know how to create foo.")
+        expect { ProjectFactory.create("foo") }.to raise_error(ArgumentError, "Don’t know how to create foo.")
       end
     end
   end

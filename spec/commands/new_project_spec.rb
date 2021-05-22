@@ -9,28 +9,28 @@ module Mvnizer
       subject { Mvnizer::Command::NewProject.new }
 
       it "creates the project directory" do
-        subject.should_receive(:generate_file).exactly(3).times
-        subject.should_receive(:create_dir).with("foobar/src/main/java", "foobar/src/test/java")
+        expect(subject).to receive(:generate_file).exactly(3).times
+        expect(subject).to receive(:create_dir).with("foobar/src/main/java", "foobar/src/test/java")
 
         subject.run(project)
       end
 
       it "parses the extra dependencies and adds them" do
-        subject.should_receive(:get_dependencies).and_return(["foo:bar:1.0:jar:test"])
-        CoordinateParser.should_receive(:new).and_return(coordinate_parser)
-        coordinate_parser.should_receive(:parse_scoped_coordinates).with("foo:bar:1.0:jar:test").and_return("Blah")
-        subject.should_receive(:generate_file).exactly(3).times
-        subject.should_receive(:create_dir)
+        expect(subject).to receive(:get_dependencies).and_return(["foo:bar:1.0:jar:test"])
+        expect(CoordinateParser).to receive(:new).and_return(coordinate_parser)
+        expect(coordinate_parser).to receive(:parse_scoped_coordinates).with("foo:bar:1.0:jar:test").and_return("Blah")
+        expect(subject).to receive(:generate_file).exactly(3).times
+        expect(subject).to receive(:create_dir)
 
         subject.run(project)
 
-        project.dependencies.first.should == "Blah"
+        expect(project.dependencies.first).to eq("Blah")
       end
 
       it "generates the pom file" do
-        subject.should_receive(:generate_file).with(File.join(TaskHelper::TEMPLATE_DIR, "pom.xml.erb"), "foobar/pom.xml", project)
-        subject.should_receive(:generate_file).with(File.join(TaskHelper::TEMPLATE_DIR, "gitignore.erb"), "foobar/.gitignore", project)
-        subject.should_receive(:generate_file).with(File.join(TaskHelper::TEMPLATE_DIR, "editorconfig.erb"), "foobar/.editorconfig", project)
+        expect(subject).to receive(:generate_file).with(File.join(TaskHelper::TEMPLATE_DIR, "pom.xml.erb"), "foobar/pom.xml", project)
+        expect(subject).to receive(:generate_file).with(File.join(TaskHelper::TEMPLATE_DIR, "gitignore.erb"), "foobar/.gitignore", project)
+        expect(subject).to receive(:generate_file).with(File.join(TaskHelper::TEMPLATE_DIR, "editorconfig.erb"), "foobar/.editorconfig", project)
         subject.run(project)
       end
     end

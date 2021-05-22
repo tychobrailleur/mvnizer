@@ -15,8 +15,8 @@ module Mvnizer
     describe "#create_dir" do
       it "creates a list of directories" do
         subject.create_dir("/tmp/blah/blah", "/tmp/foo/bar")
-        Dir.exists?("/tmp/blah/blah").should be true
-        Dir.exists?("/tmp/foo/bar").should be true
+        expect(Dir.exists?("/tmp/blah/blah")).to be true
+        expect(Dir.exists?("/tmp/foo/bar")).to be true
       end
     end
 
@@ -24,26 +24,26 @@ module Mvnizer
       it "generates a file from a template into a given directory" do
 
         # This checks ERB is called properly.
-        ERB.should_receive(:new).and_return(erb)
-        binding.should_receive(:get_binding)
-        erb.should_receive(:result).and_return("Blah")
+        expect(ERB).to receive(:new).and_return(erb)
+        expect(binding).to receive(:get_binding)
+        expect(erb).to receive(:result).and_return("Blah")
 
         # This checks that the template is being read
-        File.should_receive(:open).with("dummy.txt.erb", "r").and_return(file)
-        file.should_receive(:read)
+        expect(File).to receive(:open).with("dummy.txt.erb", "r").and_return(file)
+        expect(file).to receive(:read)
 
         # This checks that the output is being written.
         f = double("output_file")
-        File.should_receive(:open).with("foobar/dummy.txt", "w").and_yield(f)
-        f.should_receive(:write).with("Blah")
+        expect(File).to receive(:open).with("foobar/dummy.txt", "w").and_yield(f)
+        expect(f).to receive(:write).with("Blah")
 
         subject.generate_file("dummy.txt.erb", "foobar/dummy.txt", binding)
       end
 
       it "creates the output directory if it does not exist" do
-        subject.should_receive(:create_dir).with("foo")
-        File.should_receive(:open).at_least(1).times.and_return(file)
-        file.should_receive(:read)
+        expect(subject).to receive(:create_dir).with("foo")
+        expect(File).to receive(:open).at_least(1).times.and_return(file)
+        expect(file).to receive(:read)
         subject.generate_file("dummy.txt.erb", "foo/dummy.txt", binding)
       end
     end
@@ -55,11 +55,11 @@ module Mvnizer
 
         pom_location = File.join(File.dirname(__FILE__), "dummy_pom.xml")
         output = subject.add_dependency(dependencies, pom_location)
-        output.should match("<groupId>org.apache.commons</groupId>")
+        expect(output).to match("<groupId>org.apache.commons</groupId>")
       end
 
       it "throws an error if the pom cannot be found in the current directory" do
-        lambda { subject.add_dependency(nil) }.should raise_error(FileNotFoundError, "The pom.xml file cannot be found.")
+        expect { subject.add_dependency(nil) }.to raise_error(FileNotFoundError, "The pom.xml file cannot be found.")
       end
     end
   end
