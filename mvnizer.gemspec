@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
 
   s.require_paths = ["lib"]
   s.authors = ["S\u{e9}bastien Le Callonnec"]
-  s.date = "2020-10-21"
+  s.date = "2021-05-23"
   s.description = "Bootstrap a Maven project without the pain of archetypes."
   s.email = "sebastien@weblogism.com"
   s.executables = ["mvnizer"]
@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
 
   s.homepage = "http://github.com/tychobrailleur/mvnizer"
   s.licenses = ["MIT"]
+  s.required_ruby_version = '>= 2.7.0'
   s.rubygems_version = "2.7.8"
   s.summary = "Bootstrap a Maven project without the pain of archetypes."
 end
