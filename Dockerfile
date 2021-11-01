@@ -13,6 +13,8 @@ RUN apt-get update -q && \
 RUN /bin/bash -l -c "rvm autolibs packages && rvm install 2.7.0 && rvm use 2.7.0"
 RUN /bin/bash -l -c "gem update -f --no-document --system && gem install bundler"
 
+WORKDIR /mvnizer
+
 # To run:
 #   docker run -t -i -v $(pwd):/mvnizer  mvnizer-build:latest /bin/bash
 
