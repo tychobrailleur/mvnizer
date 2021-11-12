@@ -3,9 +3,9 @@ module Mvnizer
   # The elements of the coordinates are read-only.
   class Project
     include Erbicole
-    attr_reader :group_id, :artifact_id, :version, :type, :dependencies, :scope, :plugins
+    attr_reader :group_id, :artifact_id, :version, :type, :dependencies, :scope, :plugins, :docker
 
-    def initialize(group_id, artifact_id, version, type, dependencies = [], scope = nil, plugins = [])
+    def initialize(group_id, artifact_id, version, type, dependencies = [], scope = nil, plugins = [], docker = false)
       @group_id = group_id
       @artifact_id = artifact_id
       @version = version
@@ -13,6 +13,7 @@ module Mvnizer
       @dependencies = dependencies
       @scope = scope
       @plugins = plugins
+      @docker = docker
     end
 
     def add_dependency(dependency)

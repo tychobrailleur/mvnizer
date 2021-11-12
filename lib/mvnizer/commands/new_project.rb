@@ -24,6 +24,12 @@ module Mvnizer
                       "#{project.artifact_id}/.editorconfig",
                       project)
 
+        if project.docker
+          generate_file(File.join(TEMPLATE_DIR, "Dockerfile.erb"),
+                        "#{project.artifact_id}/Dockerfile",
+                        project)
+        end
+
       end
 
       # Returns the list of dependencies to be added for this type of project.

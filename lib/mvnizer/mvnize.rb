@@ -51,7 +51,8 @@ module Mvnizer
       return_project = Project.new(project.group_id || options[:group_id],
                                    project.artifact_id,
                                    project.version || options[:version],
-                                   project.type || options[:type])
+                                   project.type || options[:type],
+                                   [], nil, [], options[:docker] || false)
 
 
       # Get default dependencies, and add them after having parsed their coords.
@@ -59,7 +60,6 @@ module Mvnizer
       dependencies.each do |d|
         return_project.add_dependency(@coordinate_parser.parse_scoped_coordinates(d))
       end if dependencies
-
 
       plugins = options[:plugins]
       plugins.each do |p|

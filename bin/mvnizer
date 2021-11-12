@@ -26,7 +26,7 @@ HELP
 
 options = {}
 
-opts = OptionParser.new do |opts|
+opt_parser = OptionParser.new do |opts|
   opts.banner = help
 
   opts.on_tail("-h", "--help", "Show this message") do
@@ -38,10 +38,18 @@ opts = OptionParser.new do |opts|
     puts "Mvnizer " + Mvnizer::Version::STRING
     exit 0
   end
+
+  opts.on("--docker", "Create Dockerfile.  Ignored if not `new' command.") do
+    options[:docker] = true
+  end
+
+  opts.on("--logger", "Add logging dependencies.  Ignored if not `new' command.") do
+    options[:logger] = true if ARGV[0] == 'new'
+  end
 end
 
 # Read command line options into `options` hash
-opts.parse!
+opt_parser.parse!
 
 if ARGV.size == 2
   options[:command] = ARGV[0]

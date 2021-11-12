@@ -1,0 +1,6 @@
+FROM gcr.io/distroless/java-debian11:11
+
+COPY ./target/${JAR_FILE} /app/<%= artifact_id %>.<%= type %>
+
+WORKDIR /app
+CMD ["/app/<%= artifact_id %>.<%= type %>"]
