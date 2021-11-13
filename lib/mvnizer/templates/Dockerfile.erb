@@ -1,6 +1,7 @@
 FROM gcr.io/distroless/java-debian11:11
+ARG JAR_FILE=<%= artifact_id %>-<%= version %>.<%= type %>
 
-COPY ./target/${JAR_FILE} /app/<%= artifact_id %>.<%= type %>
-
+COPY --chown=nonroot:nonroot ./target/${JAR_FILE} /app/<%= artifact_id %>.<%= type %>
 WORKDIR /app
+
 CMD ["/app/<%= artifact_id %>.<%= type %>"]
