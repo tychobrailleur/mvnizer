@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
 
   s.require_paths = ["lib"]
   s.authors = ["S\u{e9}bastien Le Callonnec"]
-  s.date = "2021-05-23"
-  s.description = "Bootstrap a Maven project without the pain of archetypes."
+  s.date = "2021-11-12"
+  s.description = "Generate a Maven project with pre-defined values, including pom file, gitignore, and more."
   s.email = "sebastien@weblogism.com"
   s.executables = ["mvnizer"]
   s.extra_rdoc_files = [

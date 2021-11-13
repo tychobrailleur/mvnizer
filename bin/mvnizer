@@ -43,8 +43,12 @@ opt_parser = OptionParser.new do |opts|
     options[:docker] = true
   end
 
+  opts.on("--main [MAIN_CLASS]", "Create a main class with name MAIN_CLASS.") do |main|
+    options[:main] = main
+  end
+
   opts.on("--logger", "Add logging dependencies.  Ignored if not `new' command.") do
-    options[:logger] = true if ARGV[0] == 'new'
+    options[:logger] = true
   end
 end
 

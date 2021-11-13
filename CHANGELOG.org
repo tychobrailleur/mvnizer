@@ -1,3 +1,14 @@
+* Mvnizer 1.2.0
+
+  - Add =--docker= option to generate =Dockerfile=
+  - Add =--logger= option to add logging dependencies to the project
+  - Add =--main=[Main class name]= option to generate main class, and set up =maven-shade-plugin= automatically.
+  - Fix bug with patch component of version not supporting multiple digits.
+
+* Mvnizer 1.1.0
+
+  - Update nokogiri dependency to 1.12
+
 * Mvnizer 1.0.0
 
   - Release of major version!

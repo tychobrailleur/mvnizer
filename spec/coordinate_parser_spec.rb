@@ -48,6 +48,11 @@ describe Mvnizer::CoordinateParser do
       expect(project.version).to eq("1.0.0-rc2")
       expect(project.type).to eq("war")
     end
+
+    it "can parse multiple digit patch versions" do
+      project = subject.parse("name:1.0.15:war")
+      expect(project.version).to eq("1.0.15")
+    end
   end
 
   describe "#parse_scoped_coordinates" do
@@ -77,7 +82,6 @@ describe Mvnizer::CoordinateParser do
       expect(project.version).to eq("6.0")
       expect(project.type).to eq("jar")
       expect(project.scope).to eq("provided")
-
     end
 
     it "can parse a dependency without scope" do
@@ -87,6 +91,11 @@ describe Mvnizer::CoordinateParser do
       expect(project.version).to eq("4.10")
       expect(project.type).to eq("jar")
       expect(project.scope).to be_nil
+    end
+
+    it "can parse a version with multiple digit patch version" do
+      project = subject.parse_scoped_coordinates("junit:junit:4.10.12:jar")
+      expect(project.version).to eq("4.10.12")
     end
   end
 end

@@ -33,6 +33,28 @@ module Mvnizer
         expect(subject).to receive(:generate_file).with(File.join(TaskHelper::TEMPLATE_DIR, "editorconfig.erb"), "foobar/.editorconfig", project)
         subject.run(project)
       end
+
+      it "generates the Dockerfile if docker set to true" do
+        docker_project = Mvnizer::Project.new("com.example", "foobar", "1.0.0-SNAPSHOT", "war", [], nil, [], nil, true)
+
+        expect(subject).to receive(:generate_file).with(File.join(TaskHelper::TEMPLATE_DIR, "pom.xml.erb"), "foobar/pom.xml", docker_project)
+        expect(subject).to receive(:generate_file).with(File.join(TaskHelper::TEMPLATE_DIR, "gitignore.erb"), "foobar/.gitignore", docker_project)
+        expect(subject).to receive(:generate_file).with(File.join(TaskHelper::TEMPLATE_DIR, "editorconfig.erb"), "foobar/.editorconfig", docker_project)
+        expect(subject).to receive(:generate_file).with(File.join(TaskHelper::TEMPLATE_DIR, "Dockerfile.erb"), "foobar/Dockerfile", docker_project)
+
+        subject.run(docker_project)
+      end
+
+      it "generates the main class if main is set to true" do
+        project_with_main = Mvnizer::Project.new("com.example", "foobar", "1.0.0-SNAPSHOT", "war", [], nil, [], 'App')
+
+        expect(subject).to receive(:generate_file).with(File.join(TaskHelper::TEMPLATE_DIR, "pom.xml.erb"), "foobar/pom.xml", project_with_main)
+        expect(subject).to receive(:generate_file).with(File.join(TaskHelper::TEMPLATE_DIR, "gitignore.erb"), "foobar/.gitignore", project_with_main)
+        expect(subject).to receive(:generate_file).with(File.join(TaskHelper::TEMPLATE_DIR, "editorconfig.erb"), "foobar/.editorconfig", project_with_main)
+        expect(subject).to receive(:generate_file).with(File.join(TaskHelper::TEMPLATE_DIR, "Main.java.erb"), "foobar/src/main/java/com/example/foobar/App.java", project_with_main)
+
+        subject.run(project_with_main)
+      end
     end
   end
 end

@@ -24,6 +24,13 @@ module Mvnizer
                       "#{project.artifact_id}/.editorconfig",
                       project)
 
+        if project.main
+          target_directory = project.package_name.gsub(/\./, File::SEPARATOR)
+          generate_file(File.join(TEMPLATE_DIR, "Main.java.erb"),
+                        "#{project.artifact_id}/src/main/java/#{target_directory}/#{project.main}.java",
+                        project)
+        end
+
         if project.docker
           generate_file(File.join(TEMPLATE_DIR, "Dockerfile.erb"),
                         "#{project.artifact_id}/Dockerfile",

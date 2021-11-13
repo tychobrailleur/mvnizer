@@ -17,19 +17,19 @@ module Mvnizer
     # passed in +options+.
     # If the command does not exit, throw an error.
     def run(options)
-      raise ArgumentError, "Please give a name to the project." unless options[:name]
+      raise ArgumentError, 'Please give a name to the project.' unless options[:name]
 
       case options[:command]
-      when "new"
+      when 'new'
         project_details = define_project(options)
-        project_command = Mvnizer::Command::ProjectFactory.create(project_details.type)
 
+        project_command = Mvnizer::Command::ProjectFactory.create(project_details.type)
         project_command.run(project_details)
         out.puts("Project #{project_details.artifact_id} created successfully.")
-      when "search"
+      when 'search'
         search_command = Command::SearchArtefact.new
         search_command.run(options)
-      when "add"
+      when 'add'
         add_command = Command::AddDependency.new
         add_command.run(options)
       else
@@ -52,19 +52,26 @@ module Mvnizer
                                    project.artifact_id,
                                    project.version || options[:version],
                                    project.type || options[:type],
-                                   [], nil, [], options[:docker] || false)
+                                   [], nil, [],
+                                   options[:main],
+                                   options[:docker] || false)
 
 
       # Get default dependencies, and add them after having parsed their coords.
       dependencies = options[:dependencies]
-      dependencies.each do |d|
+      dependencies&.each do |d|
         return_project.add_dependency(@coordinate_parser.parse_scoped_coordinates(d))
-      end if dependencies
+      end
+
+      # If logger is true, add logging dependencies.
+      options[:logging_deps]&.each do |d|
+        return_project.add_dependency(@coordinate_parser.parse_scoped_coordinates(d))
+      end
 
       plugins = options[:plugins]
-      plugins.each do |p|
+      plugins&.each do |p|
         return_project.add_plugin(@coordinate_parser.parse_scoped_coordinates(p))
-      end if plugins
+      end
 
       return_project
     end

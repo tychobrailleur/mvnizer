@@ -3,3 +3,6 @@ version: 0.0.1-SNAPSHOT
 type: jar
 dependencies: [ "org.junit.jupiter:junit-jupiter-engine:5.7.0:jar:test" ]
 plugins: [ ":maven-compiler-plugin:3.8.1" ]
+logging_deps: [ "org.slf4j:slf4j-api:1.7.32:jar",
+                "org.slf4j:slf4j-simple:1.7.32:jar",
+                "ch.qos.logback:logback-core:1.2.6:jar" ]
