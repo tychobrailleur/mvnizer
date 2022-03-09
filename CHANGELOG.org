@@ -1,3 +1,10 @@
+* Mvnizer 1.3.0
+
+  - Update default junit version to 5.8.2
+  - Update SLF4J version to 1.7.36
+  - Update logback-core to 1.2.11
+  - Update nokogiri dependency to 1.13
+
 * Mvnizer 1.2.0
 
   - Add =--docker= option to generate =Dockerfile=
