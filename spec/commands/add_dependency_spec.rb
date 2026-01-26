@@ -13,7 +13,7 @@ module Mvnizer
       it "adds a dependency" do
         options = { name: "test" }
 
-        expect(File).to receive(:exists?).and_return(true)
+        expect(File).to receive(:exist?).and_return(true)
         expect(subject).to receive(:add_dependency).with(["test"]).and_return("out")
         expect(File).to receive(:open).with("pom.xml", "w").and_yield(file)
         expect(file).to receive(:write).with("out")

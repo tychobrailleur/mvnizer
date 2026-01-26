@@ -14,14 +14,14 @@ module Mvnizer
     end
 
     # generates the file +destination_file+ from template +template+
-    # and object +binding+.  +binding+ must be an ERB binding. 
+    # and object +binding+.  +binding+ must be an ERB binding.
     # +destination_file+ must be the aboslute location to the generated
     # file.
     # If the output folder in which the file gets generated does not exist,
     # it automatically gets created.
     def generate_file(template, destination_file, binding)
       dir = File.dirname(destination_file)
-      create_dir(dir) unless File.exists?(dir)
+      create_dir(dir) unless File.exist?(dir)
 
       template = File.open(template, 'r').read
 
@@ -31,7 +31,7 @@ module Mvnizer
     end
 
     # adds a list of dependencies to the pom file whose location
-    # can be given as +pom_location+.  By default, this function 
+    # can be given as +pom_location+.  By default, this function
     # looks up the pom in the current directory.
     def add_dependency(dependency, pom_location = File.join(Dir.pwd, "pom.xml"))
       raise FileNotFoundError, "The pom.xml file cannot be found." unless File.exists?(pom_location)
@@ -58,7 +58,7 @@ module Mvnizer
         end
       end
 
-      # Requires sparklemotion/nokogiri#772 to produce 
+      # Requires sparklemotion/nokogiri#772 to produce
       # identical pom files in both MRI and JRuby.
       pom.to_xml(indent: 2)
     end
