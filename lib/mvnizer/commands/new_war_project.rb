@@ -12,7 +12,6 @@ module Mvnizer
                       "#{project.artifact_id}/src/main/webapp/WEB-INF/web.xml",
                       project)
 
-
         # The Java class will be generated in the groupId/artifactId folder
         # with the dots replaced by path separators.
         target_directory = project.package_name.gsub(/\./, File::SEPARATOR)
