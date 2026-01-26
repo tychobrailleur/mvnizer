@@ -65,9 +65,9 @@ The version *must* be of the form =major.minor.patch-classifier=.
     - =--logger= :: this adds logging dependencies to the project.  The jar added are defined as the =logging_deps= of the configuration file.  The default are:
 
     #+begin_src
-logging_deps: [ "org.slf4j:slf4j-api:1.7.36:jar",
-                "org.slf4j:slf4j-simple:1.7.36:jar",
-                "ch.qos.logback:logback-core:1.2.11:jar" ]
+logging_deps: [ "org.slf4j:slf4j-api:2.0.17:jar",
+                "org.slf4j:slf4j-simple:2.0.17:jar",
+                "ch.qos.logback:logback-core:1.5.26:jar" ]
     #+end_src
 
 *** WAR Project
