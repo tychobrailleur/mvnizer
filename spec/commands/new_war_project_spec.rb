@@ -45,7 +45,7 @@ module Mvnizer
 
       it "adds the dependencies needed for a war file" do
         deps = subject.get_dependencies
-        expect(deps.include?("javax:javaee-web-api:6.0:jar:provided")).to be true
+        expect(deps.include?("jakarta.platform:jakarta.jakartaee-web-api:9.1.0:jar:provided")).to be true
       end
 
       after do

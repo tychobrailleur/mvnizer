@@ -6,7 +6,7 @@ module Mvnizer
 
         create_dir("#{project.artifact_id}/src/main/webapp/WEB-INF")
 
-        # web.xml is optional in Servlet 3.0
+        # web.xml is optional in Servlet 5.0
         # Do we keep its generation here?
         generate_file(File.join(TEMPLATE_DIR, "web.xml.erb"),
                       "#{project.artifact_id}/src/main/webapp/WEB-INF/web.xml",
@@ -26,7 +26,7 @@ module Mvnizer
       end
 
       def get_dependencies
-        ["javax:javaee-web-api:6.0:jar:provided"]
+        ["jakarta.platform:jakarta.jakartaee-web-api:9.1.0:jar:provided"]
       end
     end
   end

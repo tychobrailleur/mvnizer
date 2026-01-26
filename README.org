@@ -77,7 +77,7 @@ logging_deps: [ "org.slf4j:slf4j-api:2.0.17:jar",
     When running the Jetty plugin, /e.g./:
 
 #+BEGIN_EXAMPLE
-mvn org.eclipse.jetty:jetty-maven-plugin:9.4.12.v20180830:run-war
+mvn org.eclipse.jetty:jetty-maven-plugin:11.0.26:run-war
 #+END_EXAMPLE
 
     The example can then be accessed at http://localhost:8080/hello
