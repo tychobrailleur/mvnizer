@@ -23,4 +23,6 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.7.0'
   s.rubygems_version = "2.7.8"
   s.summary = "Bootstrap a Maven project without the pain of archetypes."
+  s.add_dependency "httparty", "~> 0.17"
+  s.add_dependency "nokogiri", "~> 1.15"
 end
