@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   s.homepage = "http://github.com/tychobrailleur/mvnizer"
   s.licenses = ["MIT"]
-  s.required_ruby_version = '>= 2.7.0'
+  s.required_ruby_version = '>= 3.2.0'
   s.rubygems_version = "2.7.8"
   s.summary = "Bootstrap a Maven project without the pain of archetypes."
   s.add_dependency "httparty", "~> 0.17"
