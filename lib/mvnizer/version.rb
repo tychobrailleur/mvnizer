@@ -1,5 +1,5 @@
 module Mvnizer
   module Version
-    STRING = '2.0.1'
+    STRING = '2.0.2'
   end
 end
