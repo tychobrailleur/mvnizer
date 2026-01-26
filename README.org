@@ -16,6 +16,15 @@ Bootstraps a Maven project. Because archetypes shouldn't be so complicated.
     $ gem install mvnizer
 #+END_EXAMPLE
 
+* Developing Mvnizer
+
+  To work on Mvnizer itself, you can use the provided Dockerfile.
+
+#+BEGIN_EXAMPLE
+  $ docker build -t mvnizer-dev .
+  $ docker run -it -v $(pwd):/usr/src/app mvnizer-dev
+#+END_EXAMPLE
+
 * Commands
 
 ** Project Creation

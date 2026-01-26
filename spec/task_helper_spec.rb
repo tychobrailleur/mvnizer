@@ -15,8 +15,8 @@ module Mvnizer
     describe "#create_dir" do
       it "creates a list of directories" do
         subject.create_dir("/tmp/blah/blah", "/tmp/foo/bar")
-        expect(Dir.exists?("/tmp/blah/blah")).to be true
-        expect(Dir.exists?("/tmp/foo/bar")).to be true
+        expect(Dir.exist?("/tmp/blah/blah")).to be true
+        expect(Dir.exist?("/tmp/foo/bar")).to be true
       end
     end
 

@@ -10,6 +10,6 @@ gem 'rake-release'
 group :development do
   gem 'rspec', '~> 3.10.0'
   gem 'rspec-mocks', '~> 3.10.0'
-  gem 'fakefs', '~> 0.14'
+  gem 'fakefs', '~> 3.2'
 #  gem 'aruba', '~> 0.14'
 end
