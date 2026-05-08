@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby ">= 3.2.0"
 
 gem 'httparty', '~> 0.24'
-gem 'nokogiri', '~> 1.15'
+gem 'nokogiri', '~> 1.19'
 gem 'rake', '~> 13.3'
 gem 'rake-release'
 
